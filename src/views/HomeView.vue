@@ -1,9 +1,15 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+    import HeroHome from '../components/HeroHome.vue'
+    import Baner from '../components/Baner.vue'
+    import Siguenos from '../components/Siguenos.vue'
+    import Novedades from '../components/Novedades.vue'
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+    <div class="main_home">
+        <HeroHome />
+        <Baner />
+        <Siguenos />
+        <Novedades />
+    </div>
 </template>
