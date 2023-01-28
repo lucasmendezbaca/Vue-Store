@@ -186,7 +186,7 @@ a {
 }
 
 .user_menu--login {
-    min-width: fit-content;
+    min-width: 160px;
 }
 
 .user_menu--login,

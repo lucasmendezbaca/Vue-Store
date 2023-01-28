@@ -4,10 +4,10 @@
 
 <template>
     <header class="header container">
-        <img class="header__logo" src="../assets/img/logo.svg" alt="logo">
+        <router-link to="/"><img class="header__logo" src="../assets/img/logo.svg" alt="logo"></router-link>
 
         <div class="header__user_menu">
-            <a class="user_menu--login user_menu_link elemento_header" href="#"><i><img src="../assets/img/user.svg" alt="icono de usuario"></i>INICIAR SESIÓN</a>
+            <router-link to="/login" class="user_menu--login user_menu_link elemento_header"><i><img src="../assets/img/user.svg" alt="icono de usuario"></i>INICIAR SESIÓN</router-link>
             <a class="user_menu--cart user_menu_link" href="#"><i><img src="../assets/img/cart.svg" alt="icono de carrito"></i><i id="carrito_contador"></i></a>
         </div>
 
