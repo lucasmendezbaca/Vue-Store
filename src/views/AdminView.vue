@@ -4,10 +4,15 @@
 
 <template>
     <h1>Administración</h1>
-    <h2>Productos</h2>
+    <ul>
+        <li>
+            <RouterLink to="/admin-panel">Productos</RouterLink>
+        </li>
+        <li>
+            <RouterLink to="/admin-panel/categorys">Categorias</RouterLink>
+        </li>
+    </ul>
 
-    <div class="admin-panel__container">
-        <RouterView />
-    </div>
+    <RouterView />
 
 </template>

@@ -6,6 +6,9 @@ import Login from '../views/LoginView.vue'
 import RegisterAdmin from '../views/RegisterAdminView.vue'
 import AdminView from '../views/AdminView.vue'
 
+import ProductsAdminView from '../views/ProductsAdminView.vue'
+import CategorysAdminView from '../views/CategorysAdminView.vue'
+
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -59,7 +62,19 @@ export const router = createRouter({
             next('/login');
           }
         });
-      }
+      },
+      children: [
+        {
+          path: '',
+          name: 'admin-panel-products',
+          component: ProductsAdminView,
+        },
+        {
+          path: 'categorys',
+          name: 'admin-panel-categorys',
+          component: CategorysAdminView,
+        },
+      ]
     },
   ]
 })
