@@ -10,17 +10,21 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase";
 
 var isAuthenticated = false;
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        const uid = user.uid;
+function checkAuth() {
+  return new Promise((resolve) => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
         isAuthenticated = true;
-    } else {
+        resolve(true);
+      } else {
         isAuthenticated = false;
-    }
-    console.log(isAuthenticated)
-});
+        resolve(false);
+      }
+    });
+  });
+}
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
@@ -47,10 +51,15 @@ const router = createRouter({
       path: '/admin-panel',
       name: 'admin-panel',
       component: AdminView,
-      beforeEnter: (to, from) => {
-        console.log(isAuthenticated)
-        return isAuthenticated ? true : '/login';
-      },
+      beforeEnter: (to, from, next) => {
+        checkAuth().then((isAuthenticated) => {
+          if (isAuthenticated) {
+            next();
+          } else {
+            next('/login');
+          }
+        });
+      }
     },
   ]
 })

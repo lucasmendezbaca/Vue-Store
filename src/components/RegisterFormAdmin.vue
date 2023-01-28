@@ -2,6 +2,7 @@
     import { createUserWithEmailAndPassword } from "firebase/auth";
     import { auth } from "../firebase";
     import { ref } from "vue";
+    import { router } from "../router";
 
     const email = ref("");
     const password = ref("");
@@ -10,6 +11,7 @@
         createUserWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
             const user = userCredential.user;
+            router.push("/admin-panel");
             console.log(user);
         })
         .catch((error) => {
