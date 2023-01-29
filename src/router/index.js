@@ -9,6 +9,8 @@ import AdminView from '../views/AdminView.vue'
 import ProductsAdminView from '../views/ProductsAdminView.vue'
 import ProductListAdminView from '../views/ProductListAdminView.vue'
 import CreateProductAdminView from '../views/CreateProductAdminView.vue'
+import EditProductAdminView from '../views/EditProductAdminView.vue'
+
 import CategorysAdminView from '../views/CategorysAdminView.vue'
 
 import { onAuthStateChanged } from "firebase/auth";
@@ -81,6 +83,11 @@ export const router = createRouter({
               path: 'crear-producto',
               name: 'admin-panel-products-create',
               component: CreateProductAdminView,
+            },
+            {
+              path: 'editar-producto/:id/:title/:price/:description/:category/:image',
+              name: 'admin-panel-products-edit',
+              component: EditProductAdminView,
             },
           ]
         },

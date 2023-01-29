@@ -6,17 +6,31 @@
 
     import { getStorage, ref as ref2, uploadBytes, getDownloadURL } from "firebase/storage";
 
-    const name = ref('')
-    const category = ref('')
-    const description = ref('')
-    const price = ref(0)
-    const image = ref('')
+    // const name = ref('')
+    // const category = ref('')
+    // const description = ref('')
+    // const price = ref(0)
+    // const image = ref('')
+
+    const name = ref(router.currentRoute.value.params.title)
+    const category = ref(router.currentRoute.value.params.category)
+    const description = ref(router.currentRoute.value.params.description)
+    const price = ref(router.currentRoute.value.params.price)
+    const image = ref(router.currentRoute.value.params.image)
 
     const db = useFirestore()
     const categorys = useCollection(collection(db, 'categorias'))
 
-    function createProduct() {
-        addDoc(collection(db, 'productos'), {
+    // const products = useCollection(collection(db, 'productos'))
+    // const id = router.currentRoute.value.params.id
+    // const nameProduct = router.currentRoute.value.params.title
+    // const categoryProduct = router.currentRoute.value.params.category
+    // const descriptionProduct = router.currentRoute.value.params.description
+    // const priceProduct = router.currentRoute.value.params.price
+    // const imageProduct = router.currentRoute.value.params.image
+
+    function updateProduct() {
+        updateDoc(collection(db, 'productos'), {
             title: name.value,
             category: category.value,
             description: description.value,
@@ -45,7 +59,7 @@
 
 <template>
     <div class="main_create-product">
-        <h2>Crear producto</h2>
+        <h2>Editar producto</h2>
         <form class="form">
             <div class="form__input_div--admin">
                 <label for="name">Nombre</label>
@@ -55,7 +69,7 @@
             <div class="form__input_div--admin">
                 <label for="category">Categoria</label>
                 <select id="category" v-model="category">
-                    <option v-for="category in categorys" :key="category.id" :value="category.name">{{ category.name }}</option>
+                    <option v-for="category in categorys" :key="category.id" :value="category.id">{{ category.name }}</option>
                 </select>
             </div>
 
@@ -75,7 +89,7 @@
                 <input type="file" name="file" ref="fileInput" @change="subidaArchivo" />
             </div>
 
-            <button class="button" type="button" @click="createProduct">Crear producto</button>
+            <button class="button" type="button" @click="updateProduct">Crear producto</button>
         </form>
     </div>
 </template>
