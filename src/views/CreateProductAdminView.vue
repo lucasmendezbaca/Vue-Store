@@ -32,7 +32,6 @@
 
     const fileInput = ref();
     function subidaArchivo() {
-        // console.log(fileInput.value.files[0])
         const file = fileInput.value.files[0];
         const fileRef = ref2(storageRef, file.name);
         uploadBytes(fileRef, file).then((snapshot) => {
@@ -45,28 +44,38 @@
 </script>
 
 <template>
-    <h2>Crear producto</h2>
-    <form @submit.prevent="createProduct">
-        <label for="name">Nombre</label>
-        <input type="text" id="name" v-model="name" />
+    <div class="main_create-product">
+        <h2>Crear producto</h2>
+        <form class="form">
+            <div class="form__input_div--admin">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" v-model="name" />
+            </div>
 
-        <label for="category">Categoria</label>
-        <select id="category" v-model="category">
-            <option v-for="category in categorys" :key="category.id" :value="category.id">{{ category.name }}</option>
-        </select>
-        <br>
+            <div class="form__input_div--admin">
+                <label for="category">Categoria</label>
+                <select id="category" v-model="category">
+                    <option v-for="category in categorys" :key="category.id" :value="category.id">{{ category.name }}</option>
+                </select>
+            </div>
 
-        <label for="description">Descripcion</label>
-        <textarea id="description" v-model="description"></textarea>
-        <br>
+            <div class="form__input_div--admin">
+                <label for="description">Descripcion</label>
+                <br>
+                <textarea cols="40" rows="5" id="description" v-model="description"></textarea>
+            </div>
 
-        <label for="price">Precio</label>
-        <input type="number" id="price" step="0.01" v-model="price" />
-        <br>
+            <div class="form__input_div--admin">
+                <label for="price">Precio</label>
+                <input type="number" id="price" step="0.01" v-model="price" />
+            </div>
 
-        <label for="file">Imagen</label>
-        <input type="file" name="file" ref="fileInput" @change="subidaArchivo" />
+            <div class="form__input_div--admin">
+                <label for="file">Imagen</label>
+                <input type="file" name="file" ref="fileInput" @change="subidaArchivo" />
+            </div>
 
-        <button type="submit">Crear producto</button>
-    </form>
+            <button class="button" type="button" @click="createProduct">Crear producto</button>
+        </form>
+    </div>
 </template>

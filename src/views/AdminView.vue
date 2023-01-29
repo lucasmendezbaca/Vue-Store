@@ -3,16 +3,17 @@
 </script>
 
 <template>
-    <h1>Administración</h1>
-    <ul>
-        <li>
-            <RouterLink to="/admin-panel">Productos</RouterLink>
-        </li>
-        <li>
-            <RouterLink to="/admin-panel/categorys">Categorias</RouterLink>
-        </li>
-    </ul>
+    <div class="container">
+        <h1>Administración</h1>
+        <!-- <ul>
+            <li>
+                <RouterLink to="/admin-panel">Productos</RouterLink>
+            </li>
+            <li>
+                <RouterLink to="/admin-panel/categorys">Categorias</RouterLink>
+            </li>
+        </ul> -->
 
-    <RouterView />
-
+        <RouterView />
+    </div>
 </template>

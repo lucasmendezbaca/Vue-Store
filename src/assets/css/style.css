@@ -766,6 +766,29 @@ input:required:valid {
 input:invalid {
     border-color: red;
 }
+
+/* Administración */
+.product-list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.product-list__img {
+    max-width: 50px;
+}
+
+/* Crear Producto */
+.main_create-product {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.form__input_div--admin {
+    margin-bottom: 10px;
+}
+
 /* Fin Validación de formularios */
 
 /* mediaquery para 870px */
