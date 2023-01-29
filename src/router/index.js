@@ -7,6 +7,8 @@ import RegisterAdmin from '../views/RegisterAdminView.vue'
 import AdminView from '../views/AdminView.vue'
 
 import ProductsAdminView from '../views/ProductsAdminView.vue'
+import ProductListAdminView from '../views/ProductListAdminView.vue'
+import CreateProductAdminView from '../views/CreateProductAdminView.vue'
 import CategorysAdminView from '../views/CategorysAdminView.vue'
 
 import { onAuthStateChanged } from "firebase/auth";
@@ -17,6 +19,7 @@ function checkAuth() {
   return new Promise((resolve) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        console.log(user.email)
         isAuthenticated = true;
         resolve(true);
       } else {
@@ -68,6 +71,18 @@ export const router = createRouter({
           path: '',
           name: 'admin-panel-products',
           component: ProductsAdminView,
+          children: [
+            {
+              path: '',
+              name: 'admin-panel-products-list',
+              component: ProductListAdminView,
+            },
+            {
+              path: 'crear-producto',
+              name: 'admin-panel-products-create',
+              component: CreateProductAdminView,
+            },
+          ]
         },
         {
           path: 'categorys',

@@ -7,8 +7,6 @@ import { VueFire, VueFireAuth } from 'vuefire'
 
 import './assets/css/style.css'
 
-
-
 const app = createApp(App)
 
 app.use(VueFire, {
