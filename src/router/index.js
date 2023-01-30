@@ -19,7 +19,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase";
 
 var isAuthenticated = false;
-function checkAuth() {
+export function checkAuth() {
   return new Promise((resolve) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -97,7 +97,7 @@ export const router = createRouter({
               component: CreateProductAdminView,
             },
             {
-              path: 'editar-producto/:id/:title/:price/:description/:category/:image',
+              path: 'editar-producto/:id/',
               name: 'admin-panel-products-edit',
               component: EditProductAdminView,
             },

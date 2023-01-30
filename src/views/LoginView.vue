@@ -6,6 +6,6 @@
 <template>
     <div class="main_login container">
         <LoginForm />
-        <RegisterForm />
+        <!-- <RegisterForm /> -->
     </div>
 </template>

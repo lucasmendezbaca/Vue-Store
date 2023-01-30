@@ -6,28 +6,20 @@
 
     import { getStorage, ref as ref2, uploadBytes, getDownloadURL } from "firebase/storage";
 
-    // const name = ref('')
-    // const category = ref('')
-    // const description = ref('')
-    // const price = ref(0)
-    // const image = ref('')
-
-    const name = ref(router.currentRoute.value.params.title)
-    const category = ref(router.currentRoute.value.params.category)
-    const description = ref(router.currentRoute.value.params.description)
-    const price = ref(router.currentRoute.value.params.price)
-    const image = ref(router.currentRoute.value.params.image)
+    import { products } from '../main'
 
     const db = useFirestore()
     const categorys = useCollection(collection(db, 'categorias'))
 
-    // const products = useCollection(collection(db, 'productos'))
-    // const id = router.currentRoute.value.params.id
-    // const nameProduct = router.currentRoute.value.params.title
-    // const categoryProduct = router.currentRoute.value.params.category
-    // const descriptionProduct = router.currentRoute.value.params.description
-    // const priceProduct = router.currentRoute.value.params.price
-    // const imageProduct = router.currentRoute.value.params.image
+    const productId = ref(router.currentRoute.value.params.id)
+    const arrProducts = products.value.filter(product => product.id != null)
+    const product = arrProducts.find(product => product.id == productId.value)
+
+    const name = ref(product.title)
+    const category = ref(product.category)
+    const description = ref(product.description)
+    const price = ref(product.price)
+    const image = ref()
 
     function updateProduct() {
         updateDoc(collection(db, 'productos'), {

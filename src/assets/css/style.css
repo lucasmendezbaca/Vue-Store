@@ -789,6 +789,10 @@ input:invalid {
     margin-bottom: 10px;
 }
 
+.first-admin-button {
+    margin-bottom: 20px;
+}
+
 /* Fin Validación de formularios */
 
 /* mediaquery para 870px */

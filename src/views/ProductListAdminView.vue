@@ -16,7 +16,7 @@
     }
 
     function editProduct(id, title, category, description, price, image) {
-        router.push('/admin-panel/editar-producto/' + id + '/' + title + '/' + category + '/' + description + '/' + price + '/' + image)
+        router.push('/admin-panel/editar-producto/' + id)
     }
 
 </script>

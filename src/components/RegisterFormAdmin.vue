@@ -1,5 +1,5 @@
 <script setup>
-    import { createUserWithEmailAndPassword } from "firebase/auth";
+    import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
     import { auth } from "../firebase";
     import { ref } from "vue";
     import { router } from "../router";
@@ -20,6 +20,21 @@
             console.log(errorCode, errorMessage);
         });
     }
+
+    function registerAdminGoogle() {
+        signInWithPopup(auth, new GoogleAuthProvider())
+        .then((userCredential) => {
+            const user = userCredential.user;
+            router.push("/admin-panel");
+            console.log(user);
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+        });
+    }
+
 </script>
 
 <template>
@@ -34,7 +49,8 @@
                 <label for="password_register">Contraseña</label>
                 <input v-model="password" type="password" name="password_register" id="password_register" title="Debe contener al menos un número y una mayúscula y minúscula, y al menos 8 o más caracteres" required>
             </div>
-            <button @click="registerAdmin" class="button">REGISTRARSE</button>
+            <button @click="registerAdmin" class="button first-admin-button">REGISTRARSE</button>
+            <button @click="registerAdminGoogle" class="button">REGISTRARSE CON GOOGLE</button>
         </div>
     </div>
 </template>
