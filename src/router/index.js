@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from '../views/HomeView.vue'
 import Category from '../views/CategoryView.vue'
+import ProductDetail from '../views/ProductDetailView.vue'
+import CartView from '../views/CartView.vue'
 import Login from '../views/LoginView.vue'
 import RegisterAdmin from '../views/RegisterAdminView.vue'
 import AdminView from '../views/AdminView.vue'
@@ -44,6 +46,16 @@ export const router = createRouter({
       path: '/category/:name',
       name: 'category',
       component: Category
+    },
+    {
+      path: '/product-detail/:id',
+      name: 'product-detail',
+      component: ProductDetail
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: CartView
     },
     {
       path: '/login',

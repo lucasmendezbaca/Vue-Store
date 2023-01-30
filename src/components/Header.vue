@@ -1,11 +1,9 @@
 <script setup>
     import { RouterLink } from 'vue-router';
+    import { ref } from 'vue';
 
     import { onAuthStateChanged } from "firebase/auth";
     import { auth } from "../firebase";
-
-    // import { useFirestore, useCollection } from 'vuefire'
-    // import { collection, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore'
 
     var estaAutenticado = false;
 
@@ -19,9 +17,22 @@
     });
     console.log(estaAutenticado + " desde el script setup")
 
+    function cerrarSesion() {
+        auth.signOut().then(() => {
+            console.log("Sesión cerrada")
+        }).catch((error) => {
+            console.log(error)
+        });
+    }
 
-    // const db = useFirestore()
-    // const products = useCollection(collection(db, 'productos'))
+    const cartProducts = ref(JSON.parse(localStorage.getItem('carrito')) || []);
+    function countNumProductsCart() {
+        let numProductsCart = 0;
+        cartProducts.value.forEach(product => {
+            numProductsCart += product.cantidad;
+        });
+        return numProductsCart;
+    }
 </script>
 
 <template>
@@ -37,7 +48,7 @@
                     INICIAR SESIÓN
                 </template>
             </router-link>
-            <a class="user_menu--cart user_menu_link" href="#"><i><img src="../assets/img/cart.svg" alt="icono de carrito"></i><i id="carrito_contador"></i></a>
+            <router-link to="/cart" class="user_menu--cart user_menu_link"><i><img src="../assets/img/cart.svg" alt="icono de carrito"></i><i id="carrito_contador">{{ countNumProductsCart() }}</i></router-link>
         </div>
 
         <div id="menu__hamburguesa">

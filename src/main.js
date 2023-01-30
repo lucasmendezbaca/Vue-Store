@@ -5,6 +5,12 @@ import router from './router'
 import { firebaseApp } from './firebase'
 import { VueFire, VueFireAuth } from 'vuefire'
 
+import { useFirestore, useCollection } from 'vuefire'
+import { collection, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore'
+
+const db = useFirestore()
+export const products = useCollection(collection(db, 'productos'))
+
 import './assets/css/style.css'
 
 const app = createApp(App)

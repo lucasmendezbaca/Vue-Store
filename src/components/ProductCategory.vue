@@ -1,16 +1,23 @@
 <script setup>
-    defineProps(['product'])
+    import router from '../router';
+
+    const props = defineProps(['product'])
+
+    const verDetalle = () => {
+        const id = props.product.id
+        router.push(`/product-detail/${id}`)
+    }
 </script>
 
 <template>
-    <article class="producto_categoria">
+    <article @click="verDetalle" class="producto_categoria">
         <div class="producto_categoria__img_container">
-            <img :src=product.image alt="">
+            <img :src=props.product.image alt="">
         </div>
         <div class="producto_categoria__info">
-            <h3>{{ product.title }}</h3>
-            <p>{{ product.price }} €</p>
-            <p class="producto_categoria__id" style="display: none;">{{ product.category }}</p>
+            <h3>{{ props.product.title }}</h3>
+            <p>{{ props.product.price }} €</p>
+            <p class="producto_categoria__id" style="display: none;">{{ props.product.category }}</p>
         </div>
     </article>
 </template>
