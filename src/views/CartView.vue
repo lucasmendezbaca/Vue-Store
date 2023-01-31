@@ -2,15 +2,15 @@
     import { ref } from 'vue'
     const products = ref(JSON.parse(localStorage.getItem('carrito')) || []);
 
-    function addProduct(id, talla, userId) {
-        const product = products.value.find(product => product.id == id && product.talla == talla && product.userId == userId);
+    function addProduct(id, talla) {
+        const product = products.value.find(product => product.id == id && product.talla == talla);
         product.cantidad++;
 
         localStorage.setItem('carrito', JSON.stringify(products.value));
     }
 
-    function subProduct(id, talla, userId) {
-        const product = products.value.find(product => product.id == id && product.talla == talla && product.userId == userId);
+    function subProduct(id, talla) {
+        const product = products.value.find(product => product.id == id && product.talla == talla);
         if (product.cantidad > 1) {
             product.cantidad--;
         }else {
@@ -44,7 +44,7 @@
                         <span class="carrito__id">{{ product.id }}</span>
                         <p class="carrito__precio">{{ product.price }} €</p>
                         <p class="carrito__talle_p">Talla: <span class="carrito__talle">{{ product.talla }}</span></p>
-                        <p class="carrito__cantidad">Cantidad: {{ product.cantidad }} <span @click="subProduct(product.id, product.talla, product.userId)"><i class="carrito__quitar_producto carrito__opciones fa-solid fa-minus"></i></span><span @click="addProduct(product.id, product.talla, product.userId)"><i class="carrito__agregar_producto  carrito__opciones fa-solid fa-plus"></i></span></p>
+                        <p class="carrito__cantidad">Cantidad: {{ product.cantidad }} <span @click="subProduct(product.id, product.talla)"><i class="carrito__quitar_producto carrito__opciones fa-solid fa-minus"></i></span><span @click="addProduct(product.id, product.talla)"><i class="carrito__agregar_producto  carrito__opciones fa-solid fa-plus"></i></span></p>
                         <p class="carrito__subtotal">Subtotal: {{ Math.round((product.price * product.cantidad) * 100) / 100 }} €</p>
                     </div>
                 </div>

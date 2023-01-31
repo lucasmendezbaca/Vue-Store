@@ -8,7 +8,7 @@
     const arrProducts = products.value.filter(product => product.id != null)
     const product = arrProducts.find(product => product.id == productId.value)
 
-    const userId = ref(auth.currentUser.uid)
+    // const userId = ref(auth.currentUser.uid)
     const talla = ref('M')
     const cantidad = ref(1)
 
@@ -20,14 +20,14 @@
             image: product.image,
             cantidad: cantidad.value,
             talla: talla.value,
-            userId: userId.value
+            // userId: userId.value
         }
         const carrito = JSON.parse(localStorage.getItem('carrito'))
         if (carrito == null) {
             localStorage.setItem('carrito', JSON.stringify([productoCarrito]))
         } else {
             let cartProducts = JSON.parse(localStorage.getItem('carrito'))
-            let productExists = cartProducts.find(product => product.id == productoCarrito.id && product.talla == productoCarrito.talla && product.userId == productoCarrito.userId)
+            let productExists = cartProducts.find(product => product.id == productoCarrito.id && product.talla == productoCarrito.talla)
             if (productExists) {
                 productExists.cantidad = parseInt(productExists.cantidad) + parseInt(productoCarrito.cantidad)
                 localStorage.setItem('carrito', JSON.stringify(cartProducts))
@@ -61,7 +61,6 @@
             <p class="detalle_producto__precio">Precio: <span>{{ product.price }}</span> €</p>
             <p class="detalle_producto__categoria">Categoria: <span>{{ product.category }}</span></p>
             <p>Cantidad: <input type="number" name="cantidad" id="cantidad" v-model="cantidad"></p>
-            <input type="hidden" name="id" id="id" value="${product.id}">
             <button @click="addCarrito" class="boton boton--add_carrito">AÑADIR AL CARRITO<img class="animacion_carrito" src="../assets/img/cart.svg"></button>
         </div>
     </article>
